@@ -1,0 +1,132 @@
+.search-bar {
+  display: flex;
+  background-color: #fff;
+  margin-bottom: 1em;
+  box-shadow: 0 7px 14px -14px;
+  &--by-location,
+  &--by-name,
+  &--divider {
+    display: flex;
+    align-items: center;
+  }
+  // Search types
+  &--by-name {
+    .icon {
+      min-width: 350px;
+    }
+  }
+  &--by-location {
+    flex: 1;
+    .zip-code {
+      max-width: 150px;
+    }
+  }
+  // The "Or" that divides the search types
+  &--divider {
+    color: lighten($color-text, 75%);
+    font-weight: bold;
+  }
+  &--search-button {
+    margin-left: auto;
+    border-radius: 0;
+  }
+  // Total results under the search bar
+  &--total-results {
+    display: inline-block;
+    margin-left: auto;
+    text-align: right;
+  }
+  // Wraps search bar
+  &--container {
+    width: 100%;
+    max-width: $container-max-width;
+    margin: auto;
+  }
+  // Filters in-line with total results
+  &--filters {
+    display: flex;
+  } 
+  &--filter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-around;
+    min-width: 100px;
+    border: solid 1px $color-primary;
+    text-transform: capitalize;
+    background-color: #fff;
+    box-shadow: 0 0 2px 0 darken($color-primary, 5%);
+    cursor: pointer;
+    position: relative;
+    &:after {
+      content: '\e906';
+      font-family: $font-icons;
+      color: $color-primary;
+      right: .5em;
+      position: absolute;
+    }
+    &-options { 
+      position: absolute;
+      top: calc(100% + 5px);
+      background-color: #fff;
+      box-shadow: 0 0 2px 0 darken($color-primary, 5%);
+      font-size: 1em;
+      width: 100%;
+      display: inline-block;
+    }
+    &-option {
+      margin: .2em 0;
+      padding: .3em .5em;
+      text-align: left;
+      &:not(:first-of-type) {
+        color: transparent;
+      }
+      &:hover {
+        background-color: $color-primary;
+        color: #fff;
+        .icon {
+          color: transparent;
+        }
+        .icon.active {
+          color: #fff;
+        }
+      }
+      .icon.active {
+        color: $color-text;
+      }
+    }
+    &-label {
+      width: 100%;
+      text-align: left;
+      padding: .5em;
+      z-index: 1;
+    }
+  }
+  .icon:before {
+    margin-right: .5em;
+  }
+  // Inputs in the search bar
+  .input {
+    border: none;
+    border-bottom: solid 1px lighten($color-text, 60%);
+    width: 100%;
+    min-width: 100px;
+    color: lighten($color-text, 20%);
+    &::placeholder {
+      color: lighten($color-text, 20%);
+    }
+    &--container {
+      margin: 0 1em;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:before {
+        font-size: 1em;
+        color: $color-secondary;
+      }
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+.restaurants-and-map {
+  width: 100%;
+  padding-top: 2em;
+  max-width: $container-max-width;
+  display: inline-block;
+  .loading {
+    font-size: 4em;
+    padding: 3em;
+    color: $color-primary;
+  }
+}

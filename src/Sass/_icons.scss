@@ -1,0 +1,43 @@
+@mixin icon($icon) {
+  &:before {
+    content: $icon;
+  }
+}
+
+.icon {
+  &:before {
+    font-family: $font-icons;
+  }
+  // Default icon
+  &--spinner {
+    @include spin(5000ms);
+    @include icon('\e982');
+  }
+  &--heart {
+    @include icon('\e904');
+    &-filled {
+      @include icon('\e905');
+    }
+  }
+  &--location {
+    @include icon('\e948');
+  }
+  &--dollar {
+    @include icon('\e903');
+  }
+  &--phone {
+    @include icon('\e942');
+  }
+  &--search {
+    @include icon('\e986');
+  }
+  &--close {
+    @include icon('\ea0f');
+  }
+  &--user {
+    @include icon('\e971')
+  }
+  &--house {
+    @include icon('\e900')
+  }
+}

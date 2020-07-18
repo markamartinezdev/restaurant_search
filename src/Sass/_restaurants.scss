@@ -1,0 +1,94 @@
+.restaurants {
+  overflow: auto;
+  width: 55%;
+  height: 100%;
+  display: inline-block;
+  padding: 0 .5em;
+}
+
+.restaurant {
+  display: flex;
+  background-color: #fff;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 7px 14px -14px;
+  &:not(:first-of-type) {
+    margin-top: 1em;
+  }
+  &--image {
+    max-width: 80px;
+    min-width: 80px;
+    img {
+      width: 100%;
+    }
+  }
+  // Content in the lefts side div (name, location, price)
+  &--left {
+    padding: 0 1em;
+  }
+  &--name {
+    font-size: 1em;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: .5em;
+  }
+  &--location {
+    text-align: left;
+  }
+  &--address {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1em;
+    font-size: .9em;
+    text-align: left;
+    &:before {
+      color: $color-accent;
+      margin-right: .2em;
+      font-size: 1.2em;
+    }
+  }
+  &--price {
+    text-align: left;
+    font-size: 1.2em;
+  }
+  // All content in right side div (reservation, save)
+  &--right {
+    margin-left: auto;
+  }
+  &--reservation {
+    &-text {
+      font-size: .9em;
+      font-weight: normal;
+      margin: 0;
+      text-transform: capitalize;
+    }
+    &-button {
+      font-size: .9em;
+      font-weight: normal;
+      margin: .5em 0 1em;
+      display: block;
+      .icon:before{
+        margin-right: .5em;
+      }
+    }
+  }
+  &--save {
+    display: inline-flex;
+    justify-content: center;
+    text-transform: capitalize;
+    cursor: pointer;
+    &:before {
+      margin-right: .5em;
+      color: $color-favorite;
+    }
+  }
+  &--website {
+    display: inline-flex;
+    margin-right: .5em;
+    padding-right: .5em;
+    border-right: solid 1px;
+    text-decoration: underline;
+    color: lighten($color-text, 25%)
+  }
+}

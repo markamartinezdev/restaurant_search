@@ -1,0 +1,8 @@
+.price-range {
+  .icon {
+    margin: 0 .2em;
+    &.active {
+      color: $color-accent;
+    }
+  }
+}

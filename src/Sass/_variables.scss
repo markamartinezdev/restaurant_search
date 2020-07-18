@@ -1,0 +1,42 @@
+// Colors
+$color-primary: #0793b6 !default;
+$color-secondary: lighten($color-primary, 10%) !default;
+$color-accent: #f5c62d !default;
+$color-text: #0a0e13 !default;
+$color-favorite: #ce0000 !default;
+
+// Transition speeds
+$transition-default: 0.2s !default;
+$transition-button: $transition-default !default;
+
+// Fonts
+$font-icons: icons !default;
+
+// Sizes
+$container-max-width: 1500px !default;
+
+// Actions
+@mixin onClick {
+  &:active {
+    @content
+  }
+};
+
+// Animations
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+@mixin spin($speed) {
+  animation-name: spin;
+  animation-duration: $speed;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+}
+
+

@@ -1,0 +1,33 @@
+.pagination {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  padding: 2.5em;
+  &--container {        
+    width: 100%;
+    max-width: $container-max-width;
+    display: inline-block;
+    box-shadow: 0 0 7px 0 #ececec;
+  }
+  &--item {
+    padding: .5em;
+    font-size: 1em;
+    background-color: #fff;
+    color: $color-text;
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: background-color ease-in-out $transition-button;
+    &:not(:last-of-type) {
+      border-right: solid 1px lighten($color-text, 65%);
+    }
+    &.active {
+      background-color: $color-primary;
+      color: #fff;
+    }
+    &.disabled {
+      background-color: lighten($color-text, 85%);
+      pointer-events: none;
+      opacity: .5;
+    }
+  }
+}
