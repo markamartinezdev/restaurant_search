@@ -9,11 +9,11 @@ yarn jest.
 ## Notes
 
 ```
-The price filter makes new request with price, but the results dont seem to change
+The price filter makes the new request with the price query, but the results dont seem to change
 ```
 
 ```
-When searching by state, the lat-lng for some of the results come back out of the state. 
+When searching by state, the lat-lng for some of the results are out of the state. 
 ```
 
 
@@ -40,7 +40,4 @@ yarn test:unit
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-
-## Notes
 
