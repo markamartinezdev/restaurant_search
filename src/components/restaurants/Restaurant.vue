@@ -7,7 +7,7 @@
     <div class="restaurant--left">
       <div class="restaurant--name">{{restaurant.name}}</div>
       <div class="restaurant--address icon icon--location">{{restaurant.address}} {{restaurant.city}}, {{restaurant.state}} {{restaurant.postal_code}}</div>
-      <price-range class="restaurant--price" :price="restaurant.price"/>
+      <price-rating class="restaurant--price" :price="restaurant.price"/>
     </div>
 
     <div class="restaurant--right">
@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import PriceRange from './PriceRating'
+import PriceRating  from '@/components/PriceRating'
+
 export default {
   props: {
     restaurant: {
@@ -31,7 +32,7 @@ export default {
     }
   },
   components: {
-    PriceRange
+    PriceRating
   }
 }
 </script>

@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { TopNav, SearchBar, Restaurants, RestaurantMap, Pagination } from '@/components'
 import axios from 'axios'
 
@@ -41,11 +42,13 @@ export default {
         total: 0
       },
       loading: false,
-      searchQuery: '',
       resultsHeight: 0,
     }
   },
   computed: {
+    ...mapGetters({
+      searchQuery: 'searchQuery'
+    }),
     mapCenter() {
       return this.restaurants.length ? { lat: this.restaurants[0].lat, lng: this.restaurants[0].lng } : { lat: 0, lng: 0 }
     },
@@ -60,17 +63,13 @@ export default {
     this.initBodyHight()
   },
   methods: {
-    fetchRestuarants(searchQuery, page = 1) {
+    fetchRestuarants(page = 1) {
       // Set loading state
       this.loading = true
 
-      // Set search query in state to use when we change page
-      // Keeping this in state for now, might move it to a search store if we end up using vuex
-      this.searchQuery = searchQuery
-
       // Fetch new data
       // We are only allowing results for the united states
-      axios.get('http://opentable.herokuapp.com/api/restaurants?country=us&page=' + page + searchQuery)
+      axios.get('http://opentable.herokuapp.com/api/restaurants?country=us&page=' + page + this.searchQuery)
         .then(response => {
           this.restaurants = response.data.restaurants
 
@@ -95,7 +94,7 @@ export default {
         })
     },
     changePage(page) {
-      this.fetchRestuarants(this.searchQuery, page)
+      this.fetchRestuarants(page)
     },
     // Methods for the results container hight
     initBodyHight() {

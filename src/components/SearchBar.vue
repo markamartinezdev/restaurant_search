@@ -1,7 +1,8 @@
 <template>
   <div class="search-bar--container">
     <div class="search-bar">
-      <div class="search-bar--by-name">
+      <div class="search-bar--search-by icon icon--change" @click="changeSearchBy()"></div>
+      <div class="search-bar--by-name" :class="{active : searchBy === 'name'}">
         <div class="input--container icon icon--house" @input="clearLocationSearch()">
           <input class="input"  @keypress.enter="search" v-model="searchOptions.name" type="text" placeholder="Restaurant Name">
         </div>
@@ -11,7 +12,7 @@
           or
       </div>
 
-      <div class="search-bar--by-location">  
+      <div class="search-bar--by-location" :class="{active : searchBy === 'location'}">  
         <div class="input--container icon icon--location zip-code"  @input="clearNameSearch()">
           <input class="input" @keypress.enter="search" v-model="searchOptions.zip" type="number" placeholder="Zip Code">
         </div>
@@ -28,7 +29,10 @@
         </div>
       </div>
 
-      <button class="search-bar--search-button button" :class="{disabled : !searchIsValid}" @click="search"><span class="icon icon--search">Search</span></button>
+      <button class="search-bar--search-button button" :class="{disabled : !searchIsValid}" @click="search">
+        <span class="icon icon--search"></span>
+        <span class="search-bar--search-button-text">Search</span>
+        </button>
 
     </div>
     <div class="is-flex">
@@ -42,7 +46,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import PriceFilter from "./PriceFilter"
+import PriceFilter from '@/components/PriceFilter'
 
 export default {
   props: {
@@ -53,13 +57,6 @@ export default {
   },
   data() {
     return {
-      searchOptions: {
-        zip: '',
-        city: '',
-        state: '',
-        name: '',
-        price: null,
-      },
       states: {
         "AL": "Alabama",
         "AK": "Alaska",
@@ -114,24 +111,13 @@ export default {
         "WI": "Wisconsin",
         "WY": "Wyoming"
       },
+      searchBy: 'location'
     }
   },
   computed: {
-    searchQuery() {
-      let query = ''
-
-      // Array with the properties in searchOptions
-      const properties = Object.keys(this.searchOptions)
-
-      for (let property of properties) {
-        // If the property has a value add it to the query string
-        if (this.searchOptions[property]) {
-          query = query + `&${property}=${this.searchOptions[property]}`
-        }
-      }
-
-      return query
-    },
+    ...mapGetters({
+      searchOptions: 'searchOptions',
+    }),
     searchIsValid() {
       const {zip, state, city, name} = this.searchOptions
 
@@ -140,20 +126,19 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      clearNameSearch: 'clearNameSearch',
+      clearLocationSearch: 'clearLocationSearch'
+    }),
     search() {
       // If search query is valid run search
       if (this.searchIsValid) {
-        this.$emit('search', this.searchQuery)
+        this.$emit('search')
       }
     },
-    clearNameSearch() {
-      this.searchOptions.name = ''
-    },
-    clearLocationSearch() {
-      this.searchOptions.zip = ''
-      this.searchOptions.city = ''
-      this.searchOptions.state = ''
-    },
+    changeSearchBy() {
+      this.searchBy = this.searchBy === 'location' ? 'name' : 'location'
+    }
   },
   components: {
     PriceFilter

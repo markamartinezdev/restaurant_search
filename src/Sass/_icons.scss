@@ -35,9 +35,12 @@
     @include icon('\ea0f');
   }
   &--user {
-    @include icon('\e971')
+    @include icon('\e971');
   }
   &--house {
-    @include icon('\e900')
+    @include icon('\e900');
+  }
+  &--change {
+    @include icon('\ea2e');
   }
 }

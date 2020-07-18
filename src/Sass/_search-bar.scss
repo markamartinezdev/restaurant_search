@@ -4,15 +4,23 @@
   margin-bottom: 1em;
   box-shadow: 0 7px 14px -14px;
   &--by-location,
-  &--by-name,
-  &--divider {
-    display: flex;
+  &--by-name {
+    display: none;
     align-items: center;
+    &.active {
+      display: flex;
+    }
+    @include desktop {
+      display: flex;
+    }
   }
+
   // Search types
   &--by-name {
     .icon {
-      min-width: 350px;
+      @include desktop {
+        min-width: 350px;
+      }
     }
   }
   &--by-location {
@@ -21,27 +29,48 @@
       max-width: 150px;
     }
   }
+
   // The "Or" that divides the search types
   &--divider {
     color: lighten($color-text, 75%);
     font-weight: bold;
+      display: none;
+    @include desktop {
+      display: flex;
+      align-items: center;
+    }
   }
   &--search-button {
     margin-left: auto;
     border-radius: 0;
+    &-text {
+      display: none;
+      @include desktop {
+        display: inline-block;
+      }
+    }
+    .icon:before {
+      @include desktop {
+        margin-right: .5em;
+      }
+    }
   }
+
   // Total results under the search bar
   &--total-results {
     display: inline-block;
     margin-left: auto;
     text-align: right;
   }
+
   // Wraps search bar
   &--container {
     width: 100%;
     max-width: $container-max-width;
     margin: auto;
+    padding: 0 .5em;
   }
+
   // Filters in-line with total results
   &--filters {
     display: flex;
@@ -101,16 +130,24 @@
       z-index: 1;
     }
   }
-  .icon:before {
-    margin-right: .5em;
+  &--search-by {
+    display: flex;
+    align-items: center;
+    padding: 0 1em;
+    @include desktop {
+      display: none;
+    }
   }
+
   // Inputs in the search bar
   .input {
     border: none;
     border-bottom: solid 1px lighten($color-text, 60%);
     width: 100%;
-    min-width: 100px;
     color: lighten($color-text, 20%);
+    @include desktop {
+      min-width: 100px;
+    }
     &::placeholder {
       color: lighten($color-text, 20%);
     }
@@ -120,6 +157,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @include mobile {
+        margin: 0 .5em;
+      }
       &:before {
         font-size: 1em;
         color: $color-secondary;

@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import PriceRating from '@/components/restaurants/PriceRating'
+import PriceRating  from '@/components/PriceRating'
+
 export default {
   data() {
     return {

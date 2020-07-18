@@ -9,5 +9,5 @@ export {
   SearchBar,
   RestaurantMap,
   Restaurants,
-  Pagination
+  Pagination,
 }
