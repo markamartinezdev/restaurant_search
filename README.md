@@ -1,7 +1,7 @@
 # Restaurant Search
-Restaurant search ui using Vue
+Restaurant search UI built with Vue
 
-## The Run unit test
+## To Run unit test
 ```
 yarn jest.
 ```
