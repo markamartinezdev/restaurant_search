@@ -4,7 +4,7 @@ import store from './store'
 
 import './leaflet'
 
-import '@/Sass/app.scss'
+import '@/sass/app.scss'
 
 Vue.config.productionTip = false
 
