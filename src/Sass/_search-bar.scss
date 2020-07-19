@@ -161,6 +161,7 @@
     color: lighten($color-text, 20%);
     padding: 0 .2em .2em;
     font-size: 15px;
+    background-color: #fff;
     @include desktop {
       min-width: 100px;
     }

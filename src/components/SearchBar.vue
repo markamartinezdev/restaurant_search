@@ -1,7 +1,7 @@
 <template>
   <div class="search-bar--container">
     <div class="search-bar">
-      <div class="search-bar--search-by icon icon--change" @click="changeSearchBy()"></div>
+      <div class="search-bar--search-by icon icon--change" @click="changeSearchBy"></div>
       <div class="search-bar--by-name" :class="{active : searchBy === 'name'}">
         <div class="input--container icon icon--house" @input="clearLocationSearch()">
           <input class="input"  @keypress.enter="search" v-model="searchOptions.name" type="text" placeholder="Restaurant Name">
@@ -13,11 +13,11 @@
       </div>
 
       <div class="search-bar--by-location" :class="{active : searchBy === 'location'}">  
-        <div class="input--container icon icon--location zip-code"  @input="clearNameSearch()">
+        <div class="input--container icon icon--location zip-code"  @input="clearNameSearch">
           <input class="input" @keypress.enter="search" v-model="searchOptions.zip" type="number" placeholder="Zip Code">
         </div>
 
-        <div class="input--container icon icon--location"  @input="clearNameSearch()">
+        <div class="input--container icon icon--location"  @input="clearNameSearch">
           <select class="input" v-model="searchOptions.city" :disabled="!cities.length">
             <option value=''>City</option>
             <option v-for="city in cities" :key="city" :value="city">{{city}}</option>
@@ -35,7 +35,7 @@
       <button class="search-bar--search-button button" :class="{disabled : !searchIsValid}" @click="search">
         <span class="icon icon--search"></span>
         <span class="search-bar--search-button-text">Search</span>
-        </button>
+      </button>
 
     </div>
     <div class="is-flex">
