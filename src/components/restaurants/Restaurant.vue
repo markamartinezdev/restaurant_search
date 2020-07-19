@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      favorites: 'favorites'
+      favorites: 'favorites/favorites'
     }),
     isFavorite() { 
       return this.favorites.includes(this.restaurant.id)
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      setFavorites: 'setFavorites'
+      setFavorites: 'favorites/setFavorites'
     }),
     toggleFavorite(){
       this.isFavorite ? this.removeFavorite() : this.addFavorite()

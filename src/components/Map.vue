@@ -63,7 +63,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      favorites: 'favorites'
+      favorites: 'favorites/favorites'
     }),
   },
   methods: {

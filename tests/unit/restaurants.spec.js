@@ -1,4 +1,6 @@
-import { mount } from '@vue/test-utils'
+import Vuex from 'vuex'
+import favorites from '@/store/modules/favorites'
+import { mount, createLocalVue } from '@vue/test-utils'
 import Restaurants from '@/components/restaurants/Restaurants'
 
 describe('Restaurants.vue', () => {
@@ -13,11 +15,25 @@ describe('Restaurants.vue', () => {
     ]
 
     const numberOfRestaurants = restaurants.length
+
+    const localVue = createLocalVue()
+
+    localVue.use(Vuex)
+
+    const store = new Vuex.Store({
+      modules: {
+        favorites
+      }
+    })
+    
+    const componentOptions = {
+      store,
+      localVue,
+      propsData: { restaurants }
+    }
     
     // When
-    const wrapper = mount(Restaurants, {
-      propsData: { restaurants }
-    })
+    const wrapper = mount(Restaurants, componentOptions)
 
     // Should
     expect(wrapper.findAll('.restaurant').length).toBe(numberOfRestaurants)

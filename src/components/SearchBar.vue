@@ -116,7 +116,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      searchOptions: 'searchOptions',
+      searchOptions: 'search/searchOptions',
     }),
     searchIsValid() {
       const {zip, state, city, name} = this.searchOptions
@@ -127,8 +127,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      clearNameSearch: 'clearNameSearch',
-      clearLocationSearch: 'clearLocationSearch'
+      clearNameSearch: 'search/clearNameSearch',
+      clearLocationSearch: 'search/clearLocationSearch'
     }),
     search() {
       // If search query is valid run search

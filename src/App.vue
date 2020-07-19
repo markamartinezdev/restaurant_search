@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      searchQuery: 'searchQuery'
+      searchQuery: 'search/searchQuery'
     }),
     mapCenter() {
       return this.restaurants.length ? { lat: this.restaurants[0].lat, lng: this.restaurants[0].lng } : { lat: 0, lng: 0 }
