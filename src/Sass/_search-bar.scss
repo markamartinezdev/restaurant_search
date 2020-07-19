@@ -14,15 +14,13 @@
     }
     @include desktop {
       display: flex;
+      flex: 1;
     }
   }
 
   // Search types
   &--by-name {
     .icon {
-      @include desktop {
-        min-width: 350px;
-      }
     }
   }
   &--by-location {
