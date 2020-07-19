@@ -10,6 +10,8 @@
       <search-bar @search="fetchRestuarants" ref="searchBar" :totalResults="pagination.total"/>
 
       <div class="restaurants-and-map" :style="{height: resultsHeight}">
+        <div class="restaurants-and-map--toggle" @click="toggleViewType">View {{changeToView}}</div>
+
         <div v-if="!loading && !restaurants.length">
           <h1>No results</h1>
           <h2>Please enter a new search</h2>
@@ -17,9 +19,9 @@
 
         <div v-if="loading" class="icon icon--spinner loading"></div>
 
-        <restaurants v-if="showResults" :restaurants="restaurants"/>
+        <restaurants v-if="showResults" :class="{active : viewType == 'list'}" :restaurants="restaurants"/>
 
-        <restaurant-map v-if="showResults" :restaurants="restaurants" :center="mapCenter"/>
+        <restaurant-map v-if="showResults" :class="{active : viewType == 'map'}" :restaurants="restaurants" :center="mapCenter"/>
       </div>
 
       <pagination :numberOfPages="numberOfPages" :currentPage="pagination.currentPage" @changePage="changePage" ref="pagination"/>
@@ -43,6 +45,7 @@ export default {
       },
       loading: false,
       resultsHeight: 0,
+      viewType: 'list'
     }
   },
   computed: {
@@ -57,6 +60,9 @@ export default {
     },
     showResults() {
       return !this.loading && this.restaurants.length
+    },
+    changeToView() {
+      return this.viewType == "list" ? 'map' : 'list'
     }
   },
   mounted() {
@@ -105,6 +111,9 @@ export default {
       const negative = this.$refs.searchBar.$el.clientHeight  + this.$refs.pagination.$el.clientHeight
       this.resultsHeight = `calc(100% - ${negative}px)`
     },
+    toggleViewType() {
+      this.viewType = this.viewType == "list" ? 'map' : 'list'
+    }
   },
   components: {
     TopNav,

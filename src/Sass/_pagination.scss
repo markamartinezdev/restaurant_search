@@ -2,9 +2,10 @@
   display: flex;
   width: 50%;
   justify-content: center;
-  padding: 2.5em;
   width: 100%;
+  padding: .5em 0 1em;
   @include desktop {
+    padding: 2em;
     width: 50%;
   }
   &--container {        

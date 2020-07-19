@@ -1,6 +1,6 @@
 <template>
   <div class="restaurants">
-    <restaurant v-for="restaurant in restaurants" :key="restaurant.id" :restaurant="restaurant" />
+    <restaurant v-for="(restaurant, index) in restaurants" :key="restaurant.id" :restaurant="restaurant" :index="index + 1"/>
   </div>
 </template>
 

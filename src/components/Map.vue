@@ -13,7 +13,10 @@
     >
       <l-tile-layer :url="url"></l-tile-layer>
       <l-feature-group ref="markers">
-        <l-marker :ref="restaurant.mls" v-for="restaurant in restaurants" :key="restaurant.id" :lat-lng="{lat:restaurant.lat, lng: restaurant.lng}">
+        <l-marker :ref="restaurant.mls" v-for="(restaurant, index) in restaurants" :key="restaurant.id" :lat-lng="{lat:restaurant.lat, lng: restaurant.lng}">
+          <l-icon>
+            <span class="restaurants-map--marker icon icon--location-empty" :index="index + 1"></span>
+          </l-icon>
         </l-marker>
       </l-feature-group>
     </l-map>
@@ -21,7 +24,7 @@
 </template>
 
 <script>
-import { LMap, LTileLayer, LMarker, LPopup, LFeatureGroup } from 'vue2-leaflet'
+import { LMap, LTileLayer, LMarker, LPopup, LFeatureGroup, LIcon } from 'vue2-leaflet'
 
 export default {
   props: {
@@ -77,7 +80,8 @@ export default {
     LTileLayer,
     LMarker,
     LPopup,
-    LFeatureGroup
+    LFeatureGroup,
+    LIcon
   },
 }
 </script>

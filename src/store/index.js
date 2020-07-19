@@ -23,6 +23,9 @@ export default new Vuex.Store({
       state.searchOptions.city = ''
       state.searchOptions.state = ''
     },
+    updateFavorites(state, payload) {
+      state.favorites = payload
+    }
   },
   actions: {
     clearNameSearch({commit}) {
@@ -30,6 +33,9 @@ export default new Vuex.Store({
     },
     clearLocationSearch({commit}) {
       commit('clearLocationSearch')
+    },
+    setFavorites({commit}, payload) {
+      commit('updateFavorites', payload)
     }
   },
   getters: {

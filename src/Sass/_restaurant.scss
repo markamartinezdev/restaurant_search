@@ -17,7 +17,8 @@
       width: 100%;
     }
     @include mobile {
-      order: 1
+      order: 1;
+      max-width: 130px;
     }
   }
   // Content in the lefts side div (name, location, price)
@@ -33,7 +34,17 @@
     font-size: 1em;
     font-weight: bold;
     text-align: left;
+    margin-bottom: .2em;
+    @include mobile {
+      font-size: 15px;
+    }
+  }
+  &--index {
+    font-size: 15px;
     margin-bottom: .5em;
+    text-align: left;
+    color: darken($color-accent, 25%);
+    font-weight: bold;
   }
   &--location {
     text-align: left;
@@ -45,6 +56,9 @@
     margin-bottom: 1em;
     font-size: .9em;
     text-align: left;
+    @include mobile {
+      font-size: 12px;
+    }
     &:before {
       color: $color-accent;
       margin-right: .2em;
@@ -55,22 +69,29 @@
     text-align: left;
     font-size: 1.2em;
   }
+  
   // All content in right side div (reservation, save)
   &--right {
     margin-left: auto;
+    font-size: 15px;
     @include mobile {
-      order: 2
+      order: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
   }
   &--reservation {
     &-text {
-      font-size: .9em;
+      font-size: 15px;
       font-weight: normal;
       margin: 0;
       text-transform: capitalize;
     }
     &-button {
-      font-size: .9em;
+      font-size: 15px;
       font-weight: normal;
       margin: .5em 0 1em;
       display: block;
@@ -95,6 +116,7 @@
     padding-right: .5em;
     border-right: solid 1px;
     text-decoration: underline;
-    color: lighten($color-text, 25%)
+    color: lighten($color-text, 25%);
+    white-space: nowrap;
   }
 }

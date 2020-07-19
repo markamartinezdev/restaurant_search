@@ -7,8 +7,10 @@
   &--by-name {
     display: none;
     align-items: center;
+    padding: .2em;
     &.active {
       display: flex;
+      width: 100%;
     }
     @include desktop {
       display: flex;
@@ -34,12 +36,14 @@
   &--divider {
     color: lighten($color-text, 75%);
     font-weight: bold;
-      display: none;
+    display: none;
+    padding: 0 .5em;
     @include desktop {
       display: flex;
       align-items: center;
     }
   }
+
   &--search-button {
     margin-left: auto;
     border-radius: 0;
@@ -67,8 +71,11 @@
   &--container {
     width: 100%;
     max-width: $container-max-width;
-    margin: auto;
-    padding: 0 .5em;
+    margin: 0 auto;
+    padding: .5em;
+    @include tablet {
+      padding: .5em .5em 1.5em;
+    }
   }
 
   // Filters in-line with total results
@@ -76,16 +83,17 @@
     display: flex;
   } 
   &--filter {
+    min-width: 100px;
     display: inline-flex;
     align-items: center;
+    position: relative;
     justify-content: space-around;
-    min-width: 100px;
-    border: solid 1px $color-primary;
-    text-transform: capitalize;
     background-color: #fff;
+    text-transform: capitalize;
+    border: solid 1px $color-primary;
     box-shadow: 0 0 2px 0 darken($color-primary, 5%);
     cursor: pointer;
-    position: relative;
+    // Chevron pointing down
     &:after {
       content: '\e906';
       font-family: $font-icons;
@@ -93,6 +101,7 @@
       right: .5em;
       position: absolute;
     }
+    // Pop-out for the search filter
     &-options { 
       position: absolute;
       top: calc(100% + 5px);
@@ -101,6 +110,7 @@
       font-size: 1em;
       width: 100%;
       display: inline-block;
+      z-index: 1;
     }
     &-option {
       margin: .2em 0;
@@ -112,6 +122,7 @@
       &:hover {
         background-color: $color-primary;
         color: #fff;
+        // The dollar signs
         .icon {
           color: transparent;
         }
@@ -125,11 +136,14 @@
     }
     &-label {
       width: 100%;
+      font-size: 15px;
       text-align: left;
       padding: .5em;
       z-index: 1;
     }
   }
+
+  // Button to change search by when on tablet and mobile
   &--search-by {
     display: flex;
     align-items: center;
@@ -152,17 +166,18 @@
       color: lighten($color-text, 20%);
     }
     &--container {
-      margin: 0 1em;
+      padding: 0 .2em;
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
       @include mobile {
-        margin: 0 .5em;
+        padding: 0;
       }
       &:before {
         font-size: 1em;
         color: $color-secondary;
+        margin-right: .2em;
       }
     }
     &:focus {

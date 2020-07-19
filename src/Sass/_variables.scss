@@ -4,6 +4,7 @@ $color-secondary: lighten($color-primary, 10%) !default;
 $color-accent: #f5c62d !default;
 $color-text: #0a0e13 !default;
 $color-favorite: #ce0000 !default;
+$color-map-marker: #4a4a4a !default;
 
 // Transition speeds
 $transition-default: 0.2s !default;
@@ -13,7 +14,7 @@ $transition-button: $transition-default !default;
 $font-icons: icons !default;
 
 // Sizes
-$container-max-width: 1500px !default;
+$container-max-width: 1300px !default;
 
 // Actions
 @mixin onClick {
@@ -41,19 +42,25 @@ $container-max-width: 1500px !default;
 
 // Breakpoints
 @mixin mobile {
-  @media only screen and (max-width: 442px) {
+  @media only screen and (max-width: 425px) {
     @content;
   }
 }
 
 @mixin tablet {
-  @media only screen and (min-width: 768px) {
+  @media only screen and (max-width: 768px) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media only screen and (min-width: 1100px) {
+  @media only screen and (min-width: 769px) {
+    @content;
+  }
+}
+
+@mixin desktop-xl {
+  @media only screen and (min-width: 1025px) {
     @content;
   }
 }

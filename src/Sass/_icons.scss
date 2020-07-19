@@ -21,6 +21,9 @@
   }
   &--location {
     @include icon('\e948');
+    &-empty {
+      @include icon ('\e947');
+    }
   }
   &--dollar {
     @include icon('\e903');

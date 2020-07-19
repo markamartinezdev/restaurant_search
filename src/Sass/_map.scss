@@ -5,14 +5,40 @@
   border-radius: 5px;
   position: static;
   padding: 0 .5em;
-  display: inline-block;
+  display: none;
   @include desktop {
+    display: inline-block;
     width: 45%;
   }
-  @include tablet {
-    width: 50%;
-  }
   @include mobile {
-    display: none;
+    padding: 0;
+  }
+  &--marker {
+    font-size: 4em;
+    color: $color-map-marker;
+    display: flex;
+    justify-content: center;
+    &:after {
+      content: attr(index);
+      position: absolute;
+      font-size: .2em;
+      background: $color-map-marker;
+      color: #fff;
+      width: 20px;
+      height: 20px;
+      margin-top: .5em;
+      display: flex;
+      z-index: 1;
+      justify-content: center;
+      align-items: center;
+    }
+    &:before {
+      text-shadow: 0 0 0 #fff;
+    }
+  }
+  .leaflet-marker-icon {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
   }
 }

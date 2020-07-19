@@ -3,10 +3,50 @@
   padding-top: 1em;
   max-width: $container-max-width;
   display: inline-block;
+  position: relative;
   .loading {
     font-size: 4em;
     padding: 3em;
     color: $color-primary;
     display: inline-block;
+  }
+  .restaurants, 
+  .restaurants-map {
+    display: inline-block;
+    @include tablet {
+      opacity: 0;
+      width: 100%;
+      top: 0;
+      z-index: 1;
+      transition: all .5s ease;
+      position: absolute;
+      &.active {
+        opacity: 1;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 2;
+      }
+    }
+  }
+  .restaurants {
+    @include tablet {
+      left: -100%;
+    }
+  }
+  .restaurants-map {
+    @include tablet {
+      left: 100%;
+    }
+  }
+  &--toggle {
+    position: absolute;
+    top: -1.5em;
+    right: 1em;
+    text-transform: capitalize;
+    color: $color-primary;
+    @include desktop {
+      display: none;
+    }
   }
 }
