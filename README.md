@@ -12,6 +12,10 @@ To change the search type on mobile and tablet select the cycle button in the se
 ```
 
 ```
+To change between map and list view on mobile and tablet select the "view x" button over the results
+```
+
+```
 The price filter makes the new request with the price query, but the results dont seem to change
 ```
 
