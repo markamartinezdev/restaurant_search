@@ -7,7 +7,7 @@
   &--by-name {
     display: none;
     align-items: center;
-    padding: .2em;
+    padding: .3em .5em;
     &.active {
       display: flex;
       width: 100%;
@@ -34,7 +34,7 @@
 
   // The "Or" that divides the search types
   &--divider {
-    color: lighten($color-text, 75%);
+    color: lighten($color-text, 78%);
     font-weight: bold;
     display: none;
     padding: 0 .5em;
@@ -156,9 +156,11 @@
   // Inputs in the search bar
   .input {
     border: none;
-    border-bottom: solid 1px lighten($color-text, 60%);
+    border-bottom: solid 1px lighten($color-text, 85%);
     width: 100%;
     color: lighten($color-text, 20%);
+    padding: 0 .2em .2em;
+    font-size: 15px;
     @include desktop {
       min-width: 100px;
     }

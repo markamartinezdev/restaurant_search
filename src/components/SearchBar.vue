@@ -18,10 +18,13 @@
         </div>
 
         <div class="input--container icon icon--location"  @input="clearNameSearch()">
-          <input class="input" @keypress.enter="search" v-model="searchOptions.city" type="text" placeholder="City">
+          <select class="input" v-model="searchOptions.city" :disabled="!cities.length">
+            <option value=''>City</option>
+            <option v-for="city in cities" :key="city" :value="city">{{city}}</option>
+          </select>
         </div>
 
-        <div class="input--container icon icon--location" @input="clearNameSearch()">
+        <div class="input--container icon icon--location" @input="stateSelected">
           <select class="input" v-model="searchOptions.state">
             <option value=''>State</option>
             <option v-for="(stateName, stateAbrv) in states" :key="stateAbrv" :value="stateAbrv">{{stateName}}</option>
@@ -57,78 +60,27 @@ export default {
   },
   data() {
     return {
-      states: {
-        "AL": "Alabama",
-        "AK": "Alaska",
-        "AZ": "Arizona",
-        "AR": "Arkansas",
-        "CA": "California",
-        "CO": "Colorado",
-        "CT": "Connecticut",
-        "DE": "Delaware",
-        "DC": "District Of Columbia",
-        "FL": "Florida",
-        "GA": "Georgia",
-        "GU": "Guam",
-        "HI": "Hawaii",
-        "ID": "Idaho",
-        "IL": "Illinois",
-        "IN": "Indiana",
-        "IA": "Iowa",
-        "KS": "Kansas",
-        "KY": "Kentucky",
-        "LA": "Louisiana",
-        "ME": "Maine",
-        "MD": "Maryland",
-        "MA": "Massachusetts",
-        "MI": "Michigan",
-        "MN": "Minnesota",
-        "MS": "Mississippi",
-        "MO": "Missouri",
-        "MT": "Montana",
-        "NE": "Nebraska",
-        "NV": "Nevada",
-        "NH": "New Hampshire",
-        "NJ": "New Jersey",
-        "NM": "New Mexico",
-        "NY": "New York",
-        "NC": "North Carolina",
-        "ND": "North Dakota",
-        "OH": "Ohio",
-        "OK": "Oklahoma",
-        "OR": "Oregon",
-        "PA": "Pennsylvania",
-        "RI": "Rhode Island",
-        "SC": "South Carolina",
-        "SD": "South Dakota",
-        "TN": "Tennessee",
-        "TX": "Texas",
-        "UT": "Utah",
-        "VT": "Vermont",
-        "VA": "Virginia",
-        "WA": "Washington",
-        "WV": "West Virginia",
-        "WI": "Wisconsin",
-        "WY": "Wyoming"
-      },
-      searchBy: 'location'
+      searchBy: 'location',
     }
   },
   computed: {
     ...mapGetters({
       searchOptions: 'search/searchOptions',
+      cities: 'search/cities',
+      states: 'search/states'
     }),
     searchIsValid() {
       const {zip, state, city, name} = this.searchOptions
 
       // Search query is valid, if any search params have a value
       return zip || state || city || name ? true : false
-    }
+    },
   },
   methods: {
     ...mapActions({
       clearNameSearch: 'search/clearNameSearch',
-      clearLocationSearch: 'search/clearLocationSearch'
+      clearLocationSearch: 'search/clearLocationSearch',
+      clearCitySearch: 'search/clearCitySearch'
     }),
     search() {
       // If search query is valid run search
@@ -138,6 +90,10 @@ export default {
     },
     changeSearchBy() {
       this.searchBy = this.searchBy === 'location' ? 'name' : 'location'
+    },
+    stateSelected() {
+      this.clearNameSearch()
+      this.clearCitySearch()
     }
   },
   components: {

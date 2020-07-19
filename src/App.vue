@@ -80,7 +80,8 @@ export default {
           this.restaurants = response.data.restaurants
 
           this.pagination = {
-            currentPage: parseInt(response.data.current_page),
+            // Since we get current page 1 even if no results, we check if there are results before setting the value
+            currentPage: response.data.restaurants.length ? parseInt(response.data.current_page) : 0,
             per_page: parseInt(response.data.per_page),
             total: parseInt(response.data.total_entries)
           }
