@@ -15,7 +15,7 @@
       <l-feature-group ref="markers">
         <l-marker :ref="restaurant.mls" v-for="(restaurant, index) in restaurants" :key="restaurant.id" :lat-lng="{lat:restaurant.lat, lng: restaurant.lng}">
           <l-icon>
-            <span class="restaurants-map--marker icon icon--location-empty" :index="index + 1"></span>
+            <span class="restaurants-map--marker icon icon--location-empty" :class="{'is-favorite' : isFavorite(restaurant.id)}" :index="index + 1"></span>
           </l-icon>
         </l-marker>
       </l-feature-group>
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { LMap, LTileLayer, LMarker, LPopup, LFeatureGroup, LIcon } from 'vue2-leaflet'
 
 export default {
@@ -60,6 +61,11 @@ export default {
   mounted() {
     this.zoomUpdated(this.initZoom)
   },
+  computed: {
+    ...mapGetters({
+      favorites: 'favorites'
+    }),
+  },
   methods: {
     zoomUpdated (zoom) {
       this.zoom = zoom
@@ -73,6 +79,9 @@ export default {
     showAllMarkers() {
       const bounds = this.$refs.markers.mapObject.getBounds()
       this.$refs.map.mapObject.fitBounds(bounds)
+    },
+    isFavorite(id) { 
+      return this.favorites.includes(id)
     }
   },
   components: {
