@@ -15,7 +15,7 @@
       <h3 class="restaurant--reservation-text">Make reservation</h3>
       <a class="button restaurant--reservation-button" :href="`tel:${restaurant.phone}`"><span class="icon icon--phone">{{restaurant.phone}}</span></a>
       <div class="is-flex">
-        <a class="restaurant--website" :href="restaurant.reserve_url">See Website</a>
+        <a class="restaurant--website" target="blank" :href="restaurant.reserve_url">See Website</a>
         <span class="restaurant--save icon" :class="`icon--heart${isFavorite ? '-filled' : ''}`" @click="toggleFavorite(restaurant.id)">save</span>
       </div>
     </div>
