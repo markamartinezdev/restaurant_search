@@ -4,7 +4,8 @@ import store from './store'
 
 import './leaflet'
 
-import '@/sass/app.scss'
+// Changed the "s" to "S" since git wasnt registering the folder name change
+import '@/Sass/app.scss'
 
 Vue.config.productionTip = false
 
